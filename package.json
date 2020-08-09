@@ -13,6 +13,7 @@
   "devDependencies": {
     "@types/cheerio": "^0.22.21",
     "@types/got": "^9.6.11",
+    "@types/natural": "^0.6.3",
     "@types/node": "^14.0.26",
     "tslint": "^6.1.2",
     "typescript": "^3.9.7"
