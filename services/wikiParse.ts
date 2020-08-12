@@ -38,9 +38,7 @@ export class WikiParse {
       try {
         const { text, html } = await WikiParse.getWikiContent(link);
         const articleLinks = WikiParse.getAllInternalUrls(html);
-        console.log('articleLinks : ', articleLinks);
         if (articleLinks.includes(mainLink.toLowerCase())) {
-          console.log('Lucky : ', link);
           res.push({
             text,
             url: link,
