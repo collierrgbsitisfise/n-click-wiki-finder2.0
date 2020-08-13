@@ -50,6 +50,22 @@ export class TextAnalizer {
 
     return result;
   }
+
+  getTaggetWords(text: string): string[] {
+    const tokinizedText = this.tokenizer.tokenize(text)
+    .map((token: string) => nlp.PorterStemmer.stem(token.toLowerCase()))
+    .map((word: string) => this.nounInflector.singularize(word))
+    .filter((word: string) => {
+      const onlyAlphabeticChars = /^[a-z]+$/i.test(word);
+      const moreThanOneChar = word.length > 1;
+      return onlyAlphabeticChars && moreThanOneChar;
+    });
+    // @ts-ignore
+    const { taggedWords } = this.tagger.tag(tokinizedText);
+    return taggedWords
+      .filter(({ tag }) => this.validWordTypes.includes(tag))
+      .map(({ token }) => token);
+  }
 }
 
 export type WordsValues = {

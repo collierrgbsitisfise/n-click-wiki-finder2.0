@@ -4,7 +4,7 @@ import got from 'got';
 export class WikiParse {
   static basePath: string = 'https://en.wikipedia.org';
   static async getWikiContent(url: string): Promise<WikiPageResponse> {
-    console.log('GET : ', `${this.basePath}${url}`);
+    // console.log('GET : ', `${this.basePath}${url}`);
     const { body } = await got(`${this.basePath}${url}`);
     const $ = cheerio.load(body);
     return {
